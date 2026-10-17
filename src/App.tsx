@@ -8,10 +8,24 @@ import { PLANETS, SUN, speedLabel } from "./data/bodies";
 const BASE_DAYS_PER_SEC = 10; // at ×1 speed
 
 const BrandMark = () => (
-  <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+  <svg
+    width="30"
+    height="30"
+    viewBox="0 0 32 32"
+    fill="none"
+    aria-hidden="true"
+  >
     <circle cx="16" cy="16" r="5.5" fill="#f2b544" />
     <circle cx="16" cy="16" r="5.5" fill="url(#bm-glow)" opacity="0.6" />
-    <ellipse cx="16" cy="16" rx="14" ry="5.6" stroke="#8fa0bd" strokeWidth="1.3" transform="rotate(-18 16 16)" />
+    <ellipse
+      cx="16"
+      cy="16"
+      rx="14"
+      ry="5.6"
+      stroke="#8fa0bd"
+      strokeWidth="1.3"
+      transform="rotate(-18 16 16)"
+    />
     <circle cx="27.4" cy="10.4" r="2" fill="#4f74e8" />
     <defs>
       <radialGradient id="bm-glow">
@@ -58,7 +72,10 @@ export default function App() {
         const el = planetEls.current[p.id];
         if (!el) continue;
         const { x, y } = planetPosition(p, t);
-        el.setAttribute("transform", `translate(${x.toFixed(2)} ${y.toFixed(2)})`);
+        el.setAttribute(
+          "transform",
+          `translate(${x.toFixed(2)} ${y.toFixed(2)})`,
+        );
       }
       if (timeRef.current) {
         const y = Math.floor(t / 365.25);
@@ -108,7 +125,9 @@ export default function App() {
   }, []);
 
   const selected =
-    selectedId === "sun" ? SUN : PLANETS.find((p) => p.id === selectedId) ?? null;
+    selectedId === "sun"
+      ? SUN
+      : (PLANETS.find((p) => p.id === selectedId) ?? null);
 
   return (
     <div className="relative flex h-full flex-col overflow-hidden bg-void font-body text-ink">
@@ -169,7 +188,8 @@ export default function App() {
 
           {/* scale note */}
           <div className="pointer-events-none absolute bottom-4 left-4 hidden text-[9px] font-semibold tracking-[0.22em] text-faint/80 sm:block">
-            ORBIT RADII COMPRESSED · PLANET SIZES ENLARGED · {speedLabel(speed)} = {(BASE_DAYS_PER_SEC * speed).toFixed(0)} SIM-DAYS / S
+            ORBIT RADII COMPRESSED · PLANET SIZES ENLARGED · {speedLabel(speed)}{" "}
+            = {(BASE_DAYS_PER_SEC * speed).toFixed(0)} SIM-DAYS / S
           </div>
 
           {/* quick nav */}
@@ -195,7 +215,10 @@ export default function App() {
                     className="h-2 w-2 rounded-full"
                     style={{
                       background: b.colors.base,
-                      boxShadow: active || hoveredId === b.id ? `0 0 8px ${b.colors.base}` : "none",
+                      boxShadow:
+                        active || hoveredId === b.id
+                          ? `0 0 8px ${b.colors.base}`
+                          : "none",
                     }}
                   />
                   {b.id === "sun" ? "SUN" : b.name.toUpperCase()}
